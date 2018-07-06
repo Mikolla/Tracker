@@ -1,15 +1,15 @@
 package ru.bondarenko.start;
 
 import ru.bondarenko.models.*;
-import java.utils.*;
+import java.util.*;
 
 public class Tracker {	
 	private Item[] items = new Item[10];
 	private int position = 0;
 	private static final Random RN = new Random();
 	public Item add(Item item) {
-		item.setId(String.valueOf(RN.next()));
-		this.item[position++] = item;
+		item.setId(this.generateId());
+		this.items[position++] = item;
 		return item;
 	}
 	
@@ -22,5 +22,18 @@ public class Tracker {
 		}
 		return result;
 	}
+	
+	String generateId() {
+		return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+	}
+	
+	public Item[] getAll() {
+		Item[] result = new Item[this.position];
+		for (int index = 0; index != position; index++ ) {
+			result[index] = this.items[index];
+		}
+		return result;
+	}
+	
 
 }
