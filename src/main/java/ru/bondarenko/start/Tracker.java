@@ -5,11 +5,13 @@ import java.util.*;
 import java.lang.*;
 
 public class Tracker {	
-	private Item[] items = new Item[15];
+	private Item[] items = new Item[100];
 	private int position = 0;
 	private static final Random RN = new Random();
+	
+	
 	public Item add(Item item) {
-		item.setId(this.generateId());
+	    item.setId(this.generateId());
 		this.items[position++] = item;
 		return item;
 	}
@@ -39,7 +41,7 @@ public class Tracker {
 	public void replace(String id, Item item) {
 		for (int index = 0; index != position; index++ ) {
 			if (this.items[index].getId().equals(id)) {
-				item.setId(this.generateId());
+			//	item.setId(this.generateId());
 				this.items[index] = item;
 			}
 		}
