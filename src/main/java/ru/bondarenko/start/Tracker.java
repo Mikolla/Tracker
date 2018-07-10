@@ -50,9 +50,9 @@ public class Tracker {
 	public void delete(String id) {
 		for (int index = 0; index != position; index++ ) {
 			if (this.items[index].getId().equals(id)) {
-				Item[] result = new Item[position-1];
+				Item[] result = new Item[position - 1];
 				System.arraycopy(this.items, 0, result, 0, index);
-				System.arraycopy(this.items, index+1, result, index, position - index-1);
+				System.arraycopy(this.items, index+1, result, index, position - index - 1);
 				items = result; 
 				position--;
 				break;

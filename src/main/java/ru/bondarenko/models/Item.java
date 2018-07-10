@@ -1,7 +1,7 @@
 package ru.bondarenko.models;
 
 /**
-* Class Calculate Решение задачи 001 урок 1-й
+* 
 * @author  Bondarenko Nikolay
 * @version 01
 * @since 02.06.2018
