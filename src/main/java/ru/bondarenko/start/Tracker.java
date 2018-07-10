@@ -31,33 +31,35 @@ public class Tracker {
 	}
 	
 	public Item[] findAll() {
-		Item[] result = new Item[this.position];
-		for (int index = 0; index != position; index++) {
-		result[index] = this.items[index];
-		}
+		Item[] result = Arrays.copyOf(this.items, position);		
 		return result;
 	}
 	
-	public void replace(String id, Item item) {
+	public boolean replace(String id, Item item) {
+		boolean result = false;
 		for (int index = 0; index != position; index++) {
 			if (this.items[index].getId().equals(id)) {
-			//	item.setId(this.generateId());
+				item.setId(id);
 				this.items[index] = item;
-			}
-		}
-	}
-	
-	public void delete(String id) {
-		for (int index = 0; index != position; index++) {
-			if (this.items[index].getId().equals(id)) {
-				Item[] result = new Item[position - 1];
-				System.arraycopy(this.items, 0, result, 0, index);
-				System.arraycopy(this.items, index + 1, result, index, position - index - 1);
-				items = result; 
-				position--;
+				result = true;
 				break;
 			}
 		}
+		return result;
+	}
+
+	
+	public boolean delete(String id) {
+		boolean result = false;
+		for (int index = 0; index != position; index++) {
+			if (this.items[index].getId().equals(id)) {			
+				System.arraycopy(this.items, index + 1, this.items, index, position - index - 1);			
+				position--;
+				result = true;
+				break;
+			}
+		}
+		return result;
 	}
 	
 	
