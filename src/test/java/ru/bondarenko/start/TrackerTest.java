@@ -23,8 +23,8 @@ public class TrackerTest {
 public void whenAddNewItemThenTrackerHasSameItem() {
  Tracker tracker = new Tracker();
   // creating Items  
- Item itemFirst  = new Item("test1","testDescription",100L);
- Item itemSecond = new Item("test2","testDescription",101L);
+ Item itemFirst  = new Item("test1", "testDescription", 100L);
+ Item itemSecond = new Item("test2", "testDescription", 101L);
  // adding all Items to tracker 
  tracker.add(itemFirst);
  tracker.add(itemSecond);
@@ -67,11 +67,11 @@ public void whenFindAllItemsInTracker() {
 @Test
 public void whenReplaceNameThenReturnNewName() {
     Tracker tracker = new Tracker();
-    Item previous = new Item("test1","testDescription",123L);
+    Item previous = new Item("test1", "testDescription", 123L);
     // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
     tracker.add(previous);
     // Создаем новую заявку.
-    Item next = new Item("test2","testDescription2",1234L);
+    Item next = new Item("test2", "testDescription2", 1234L);
     // Проставляем старый id из previous, который был сгенерирован выше.
     next.setId(previous.getId());
     // Обновляем заявку в трекере.
@@ -157,9 +157,9 @@ public void whenFoundItemById() {
 		tracker.add(four);
 		tracker.add(six);  
 // getting ID string of Item by name "four"		
-    String ID = four.getId();
+    String id = four.getId();
 // check if the Item found by method .findById(ID) is the same with Item with name "four"
-    assertThat(tracker.findById(ID), is( four));
+    assertThat(tracker.findById(id), is(four));
 }
 
 
