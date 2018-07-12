@@ -6,11 +6,33 @@ import ru.bondarenko.models.*;
 //c:\projects\Tracker>mvn clean package
 
 public class StartUI {	
-
-      private Input input;
-	  public StartUI(Input input) {
-		  this.input = input; 
-	  }
+// Константа меню для добавления новой заявки.
+      private static final String ADD = "0";
+// Константа для вывода всех заявок.
+      private static final String SHOW = "1";
+// Константа для редактирования заявки.
+      private static final String EDIT = "2";
+// Константа для удаления заявки.
+      private static final String DEL = "3";
+// Константа для поиска заявки по ID.
+      private static final String FINDBYID = "4";
+// Константа для поиска заявки по имени
+      private static final String FINDBYNAME = "5";	  
+// Константа для выхода из цикла.
+      private static final String EXIT = "6";
+    // Получение данных от пользователя.
+     private final Input input;
+	// Хранилище заявок. 
+	 private final Tracker tracker;
+     /**
+     * Конструтор инициализирующий поля.
+     * @param input ввод данных.
+     * @param tracker хранилище заявок.
+     */
+    public StartUI(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
+    }
 	  
 	  
 
@@ -41,13 +63,16 @@ public class StartUI {
 	 }
 
 
-	public static void main(String[] args) {
-      new StartUI(
-	  new StubInput(new String[] {"create stub task"})
-	  ).init();
-	
-	
-	
+	/**
+     * Запускт программы.
+     * @param args
+     */
+    public static void main(String[] args) {
+        new StartUI(new ConsoleInput(), new Tracker()).init();
     }
+	
+	
+	
+    
 
 }
