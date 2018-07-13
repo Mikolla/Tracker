@@ -48,7 +48,11 @@ public class StartUI {
                 //добавление заявки вынесено в отдельный метод.
                 this.createItem();
             } else if (SHOW.equals(answer)) {
-                this.showAll();       
+                this.showAll();
+            } else if (DEL.equals(answer)) {
+                this.delById();
+            } else if (FINDBYID.equals(answer)) {
+                this.findByIdAndShow();				
 			} else if (EXIT.equals(answer)) {
                 exit = true;
             }
@@ -64,11 +68,42 @@ public class StartUI {
 	System.out.println("----------------------------------------");
 		 
 	 }
-
+	 
+/**
+* Метод находит заявку по id и печатает 
+*/
+  public void findByIdAndShow() {
+	  System.out.println("------------ Find ticket by id and printing out --------------");
+	  String id = this.input.ask("Input ticket id to find :");
+	  Item item = tracker.findById(id); 
+            if (item != null) {
+			System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
+			}			else {
+			System.out.println("------------ Ticket with id : " + id + " not found"+ "-----------");
+			}	  
+    }	
+	 
+/**
+ * Метод удаляет заявку
+*/
+  public void delById() {
+	  System.out.println("------------ Deleting ticket by id --------------");
+	  String id = this.input.ask("Input ticket id to delete :");
+	  Boolean result = false;
+	  result = tracker.delete(id);
+        if (result) {
+			System.out.println("------------ Ticket with id : " + id + " deleted");
+			}			else {
+			System.out.println("------------ Ticket with id : " + id + " not found or deleted");
+			}		
+    }	
+	 
+	 
 /**
  * Метод отображает все заявки
 */
   public void showAll() {
+	  System.out.println("------------ Printing out ticket list --------------");
     for (Item item : tracker.findAll()) {
 		System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
 	}
