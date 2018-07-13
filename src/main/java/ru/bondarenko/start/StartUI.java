@@ -36,24 +36,27 @@ public class StartUI {
 	  
 	  
 
-     public void init() {
-		 
-		 
-		String name = input.ask("Please, enter task name: ");
-		
-		Tracker tracker = new Tracker();
-		tracker.add(new Task(name,  "first  desc"));
-		tracker.add(new Item("second task",  "second desc", 10002L));
-		tracker.add(new Item("third  task",  "third  desc", 10003L));
-		tracker.add(new Item("4th    task",  "4th    desc", 10004L));
-		tracker.add(new Item("5th    task",  "5th    desc", 10005L));
-		tracker.add(new Item("6th    task",  "6th    desc", 10006L));
-		
+     /**
+     * Основой цикл программы.
+     */
+    public void init() {
+        boolean exit = false;
+        while (!exit) {
+            this.showMenu();
+            String answer = this.input.ask("Enter menu point number : ");
+            if (ADD.equals(answer)) {
+                //добавление заявки вынесено в отдельный метод.
+                this.createItem();
+            } else if (SHOW.equals(answer)) {
+                this.showAll();       
+			} else if (EXIT.equals(answer)) {
+                exit = true;
+            }
+			
+	}
+        
+
 	
-	System.out.println("do test2 task rep it with prev test2 and print out again");
-	 Item previous = new Item("test1", "testDescription", 123L);
-    // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
-    tracker.add(previous);
 	
 	for (Item item : tracker.findAll()) {
 		System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
@@ -61,6 +64,42 @@ public class StartUI {
 	System.out.println("----------------------------------------");
 		 
 	 }
+
+/**
+ * Метод отображает все заявки
+*/
+  public void showAll() {
+    for (Item item : tracker.findAll()) {
+		System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
+	}
+    }	
+
+	 
+	 
+ /**
+  * Метод реализует добавленяи новый заявки в хранилище.
+  */	 
+	 private void createItem() {
+        System.out.println("------------ Adding new ticket --------------");
+        String name = this.input.ask("Input ticket name :");
+        String desc = this.input.ask("Input ticket description :");
+        Item item = new Task(name, desc);
+        this.tracker.add(item);
+        System.out.println("------------ New ticket with getId : " + item.getId() + "-----------");
+    }
+/**
+  * Метод печатает меню.
+  */	 
+	 private void showMenu() {	
+System.out.println("0. Add new Item");
+System.out.println("1. Show all items");
+System.out.println("2. Edit item");
+System.out.println("3. Delete item");
+System.out.println("4. Find item by Id");
+System.out.println("5. Find items by name");
+System.out.println("6. Exit Program");
+System.out.println("Select:");        
+    }
 
 
 	/**
