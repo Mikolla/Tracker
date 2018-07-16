@@ -52,22 +52,55 @@ public class StartUI {
             } else if (DEL.equals(answer)) {
                 this.delById();
             } else if (FINDBYID.equals(answer)) {
-                this.findByIdAndShow();				
+                this.findByIdAndShow();
+            } else if (FINDBYNAME.equals(answer)) {
+                this.findByNameAndShow();
+            } else if (EDIT.equals(answer)) {
+				this.editItem();				
 			} else if (EXIT.equals(answer)) {
                 exit = true;
             }
 			
+	    }
+	}	
+	 
+ /**
+  * Метод редактирует заявку по id, то есть находит нужную заявку по id, создает новую заявку
+  * и сохраняет ее под указанныи id в хранилище.
+  */	  
+  
+	 private void editItem() {
+     System.out.println("------------ Edit ticket in tracker --------------");
+		String id = this.input.ask("Input ticket id to edit :");
+        String name = this.input.ask("Input ticket name :");
+        String desc = this.input.ask("Input ticket description :");
+        Item item = new Task(name, desc);
+        boolean result = this.tracker.replace(id, item);
+		if (result) {
+			System.out.println("------------ Ticket with id : " + id + " has just changed to-----------");
+			System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
+		} else {
+		    System.out.println("------------ Ticket with id : " + id + " not found" + "-----------");
+		}           
+    } 
+	 
+	 
+/**
+* Метод находит заявку по name (имени) и печатает 
+*/
+  public void findByNameAndShow() {
+	  System.out.println("------------ Find ticket by name and printing out --------------");
+	  String name = this.input.ask("Input ticket name to find :");
+	  Item[] result = tracker.findByName(name); 
+            if (result.length != 0) {
+			for (Item item : result) {
+		System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
 	}
-        
-
-	
-	
-	for (Item item : tracker.findAll()) {
-		System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
-	}
-	System.out.println("----------------------------------------");
-		 
-	 }
+			}			else {
+			System.out.println("------------ Ticket with name : " + name + " not found" + "-----------");
+			}	  
+    }	 
+	 
 	 
 /**
 * Метод находит заявку по id и печатает 
@@ -79,7 +112,7 @@ public class StartUI {
             if (item != null) {
 			System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
 			}			else {
-			System.out.println("------------ Ticket with id : " + id + " not found"+ "-----------");
+			System.out.println("------------ Ticket with id : " + id + " not found" + "-----------");
 			}	  
     }	
 	 
@@ -102,7 +135,7 @@ public class StartUI {
 /**
  * Метод отображает все заявки
 */
-  public void showAll() {
+  private void showAll() {
 	  System.out.println("------------ Printing out ticket list --------------");
     for (Item item : tracker.findAll()) {
 		System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
@@ -112,7 +145,7 @@ public class StartUI {
 	 
 	 
  /**
-  * Метод реализует добавленяи новый заявки в хранилище.
+  * Метод реализует добавление новой заявки в хранилище.
   */	 
 	 private void createItem() {
         System.out.println("------------ Adding new ticket --------------");
