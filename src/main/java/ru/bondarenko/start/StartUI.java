@@ -78,7 +78,7 @@ public class StartUI {
         boolean result = this.tracker.replace(id, item);
 		if (result) {
 			System.out.println("------------ Ticket with id : " + id + " has just changed to-----------");
-			System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
+			System.out.println(item.toString());
 		} else {
 		    System.out.println("------------ Ticket with id : " + id + " not found" + "-----------");
 		}           
@@ -94,7 +94,7 @@ public class StartUI {
 	  Item[] result = tracker.findByName(name); 
             if (result.length != 0) {
 			for (Item item : result) {
-		System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
+		System.out.println(item.toString());
 	}
 			}			else {
 			System.out.println("------------ Ticket with name : " + name + " not found" + "-----------");
@@ -110,7 +110,7 @@ public class StartUI {
 	  String id = this.input.ask("Input ticket id to find :");
 	  Item item = tracker.findById(id); 
             if (item != null) {
-			System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
+			System.out.println(item.toString());
 			}			else {
 			System.out.println("------------ Ticket with id : " + id + " not found" + "-----------");
 			}	  
@@ -138,7 +138,7 @@ public class StartUI {
   private void showAll() {
 	  System.out.println("------------ Printing out ticket list --------------");
     for (Item item : tracker.findAll()) {
-		System.out.println("Ticket name: " + item.getName() + " description: " + item.getDescription() + " id: " + item.getId());
+		System.out.println(item.toString());
 	}
     }	
 

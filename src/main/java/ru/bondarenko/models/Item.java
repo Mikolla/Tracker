@@ -43,4 +43,9 @@ public class Item {
 	} 
     
 	
+	public String toString() {
+		return "Ticket name: " + this.name + " description: " + this.description + " id: " + this.id;
+	}
+	
+	
 }
