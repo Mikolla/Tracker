@@ -2,6 +2,7 @@ package ru.bondarenko.start;
 
 import ru.bondarenko.models.*;
 
+
 //c:\projects\Tracker>java -cp target\tracker-1.0.jar ru.bondarenko.start.StartUI
 //c:\projects\Tracker>mvn clean package
 
@@ -135,7 +136,7 @@ public class StartUI {
 /**
  * Метод отображает все заявки
 */
-  private void showAll() {
+  public void showAll() {
 	  System.out.println("------------ Printing out ticket list --------------");
     for (Item item : tracker.findAll()) {
 		System.out.println(item.toString());
